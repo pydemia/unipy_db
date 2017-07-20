@@ -22,7 +22,7 @@ __all__ = ['from_PostgreSQL',
            'from_MariaDB']
 
 @time_profiler
-def from_PostgreSQL(query, h=None, port=None, db=None, u=None, p=None):
+def from_PostgreSQL(query, h=None, port=5432, db=None, u=None, p=None):
 
     print('Using PostgreSQL')
 
@@ -39,7 +39,7 @@ def from_PostgreSQL(query, h=None, port=None, db=None, u=None, p=None):
 
 
 @time_profiler
-def from_DB2SQL(query, h=None, port=None, db=None, u=None, p=None):
+def from_DB2SQL(query, h=None, port=50000, db=None, u=None, p=None):
 
     print('Using IBM DB2')
 
@@ -61,12 +61,12 @@ def from_DB2SQL(query, h=None, port=None, db=None, u=None, p=None):
 
 
 @time_profiler
-def from_MariaDB(query, h=None, port=None, db=None, u=None, p=None):
+def from_MariaDB(query, h=None, port=3306, db=None, u=None, p=None):
 
     print('Using MariaDB')
 
     # DB Connection
-    conn = pymysql.connect(host=h, port=p, user=u, password=p, database=db)
+    conn = pymysql.connect(host=h, port=port, user=u, password=p, database=db)
 
     # Get a DataFrame
     query_result = pd.read_sql(query, conn)

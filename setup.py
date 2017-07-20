@@ -33,7 +33,7 @@ This contains codes for DataBases.
 """
 
 setup(name='unipy_db',
-      version='0.0.3',
+      version='0.0.5',
       description='Useful tools for Data Scientists',
       long_description=long_desc,
       url='http://github.com/pydemia/unipy-db',
@@ -53,11 +53,12 @@ setup(name='unipy_db',
             ],
       packages=find_packages(exclude=['contrib', 'docs', 'tests']),
       install_requires=[
+                        'unipy',
                         'pymysql',
                         'psycopg2==2.7.1',
                         'sqlalchemy>=1.1.11',
                         'ibm_db_sa>=0.3.3',
-                        #'cx_Oracle==5.3',
+                       # 'cx_Oracle==5.3',
                         'pandas>=0.20.2'
                         ],
       zip_safe=False,

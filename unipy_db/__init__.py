@@ -6,9 +6,15 @@ Created on Sun Jan  8 03:46:03 2017
 """
 
 
+from unipy_db import _version
+from unipy_db.version import *
+
 from unipy_db import database
 
 from unipy_db.database import *
 
 __all__ = []
-__all__ += util.__all__
+
+__all__ += _version.__all__
+
+__all__ += database.__all__
