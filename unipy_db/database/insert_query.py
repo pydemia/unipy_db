@@ -11,7 +11,7 @@ import psycopg2 as pg
 import sqlalchemy as sa
 # import ibm_db_sa
 
-from unipy.util.wrapper import time_profiler
+from unipy_db.util.wrapper import time_profiler
 
 __all__ = ['to_MariaDB']
 

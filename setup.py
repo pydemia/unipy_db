@@ -18,6 +18,8 @@ except ImportError:
 import tarfile
 
 
+_version = '0.1.3'
+
 def package_data_listup():
 
     filename = 'dataset/resources.gz/resources.tar.gz'
@@ -33,7 +35,7 @@ This contains codes for DataBases.
 """
 
 setup(name='unipy_db',
-      version='0.0.5',
+      version=_version,
       description='Useful tools for Data Scientists',
       long_description=long_desc,
       url='http://github.com/pydemia/unipy-db',

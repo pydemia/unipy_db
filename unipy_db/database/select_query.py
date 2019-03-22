@@ -15,11 +15,12 @@ import ibm_db_sa
 #import cx_Oracle as co
 import pymysql
 
-from unipy.util.wrapper import time_profiler
+from unipy_db.util.wrapper import time_profiler
 
 __all__ = ['from_PostgreSQL',
            'from_DB2SQL',
-           'from_MariaDB']
+           'from_MariaDB',
+           'from_MariaDB_async']
 
 @time_profiler
 def from_PostgreSQL(query, h=None, port=5432, db=None, u=None, p=None):
@@ -75,3 +76,20 @@ def from_MariaDB(query, h=None, port=3306, db=None, u=None, p=None):
     conn.close()
 
     return query_result
+
+
+@time_profiler
+async def from_MariaDB_async(query, h=None, port=3306, db=None, u=None, p=None):
+
+    print('Using MariaDB')
+
+    # DB Connection
+    conn = pymysql.connect(host=h, port=port, user=u, password=p, database=db)
+
+    # Get a DataFrame
+    await  pd.read_sql(query, conn)
+
+    # Close Connection
+    conn.close()
+
+

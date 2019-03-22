@@ -15,9 +15,10 @@ import ibm_db_sa
 import cx_Oracle as co
 import pymysql
 
-from unipy.util.wrapper import time_profiler
+from unipy_db.util.wrapper import time_profiler
 
-__all__ = ['from_OracleSQL']
+__all__ = ['from_OracleSQL',
+           'from_OracleSQL_async']
 
 @time_profiler
 def from_OracleSQL(query, h=None, port=None, db=None, u=None, p=None):
@@ -36,4 +37,29 @@ def from_OracleSQL(query, h=None, port=None, db=None, u=None, p=None):
     conn.close()
 
     return query_result
+
+@time_profiler
+async def from_OracleSQL_async(query, h=None, port=None, db=None, u=None, p=None):
+
+    print('Using OracleDB')
+
+    # DB Connection
+    dnsStr = co.makedsn(h, str(port), db)
+    dnsStr = dnsStr.replace('SID', 'SERVICE_NAME')
+    conn = co.connect(u, p, dnsStr)
+
+    # Get a DataFrame
+    await pd.read_sql(query, conn)
+
+    # Close Connection
+    conn.close()
+
+    #return query_result
+
+
+if __name__ == '__main__':
+
+    async def DBFunc(query):
+        print('Connecting to DB : ')
+        await from_OracleSQL_async(query)
 

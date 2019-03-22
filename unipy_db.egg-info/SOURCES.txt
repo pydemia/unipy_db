@@ -1,6 +1,7 @@
 README
 setup.py
 unipy_db/__init__.py
+unipy_db/_version.py
 unipy_db.egg-info/PKG-INFO
 unipy_db.egg-info/SOURCES.txt
 unipy_db.egg-info/dependency_links.txt
@@ -13,6 +14,8 @@ unipy_db/database/__init__.py
 unipy_db/database/insert_query.py
 unipy_db/database/select_query.py
 unipy_db/database/select_query_oracle.py
+unipy_db/test/__init__.py
+unipy_db/test/async_db_test.py
 unipy_db/util/__init__.py
 unipy_db/util/api.py
 unipy_db/util/wrapper.py
