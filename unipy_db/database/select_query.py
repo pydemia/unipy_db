@@ -5,25 +5,33 @@ Created on Thu Jan  5 20:55:26 2017
 @author: Young Ju Kim
 """
 
-import pandas as pd
-from datetime import datetime
 
+import pandas as pd
+import pymysql
 import psycopg2 as pg
 import sqlalchemy as sa
-#import ibm_db
+# import ibm_db
 import ibm_db_sa
-#import cx_Oracle as co
-import pymysql
+# import cx_Oracle as co
 
-from unipy_db.util.wrapper import time_profiler
+from unipy.utils.decorator import profiler
 
-__all__ = ['from_PostgreSQL',
-           'from_DB2SQL',
-           'from_MariaDB',
-           'from_MariaDB_async']
 
-@time_profiler
-def from_PostgreSQL(query, h=None, port=5432, db=None, u=None, p=None):
+__all__ = [
+    'from_postgresql',
+    'from_PostgreSQL',
+    'from_mysql',
+    'from_mariadb',
+    'from_MariaDB',
+    'from_mariadb_async',
+    'from_MariaDB_async',
+    'from_db2',
+    'from_DB2',
+]
+
+
+@profiler(type='printing')
+def from_postgresql(query, h=None, port=5432, db=None, u=None, p=None):
 
     print('Using PostgreSQL')
 
@@ -39,8 +47,11 @@ def from_PostgreSQL(query, h=None, port=5432, db=None, u=None, p=None):
     return query_result
 
 
-@time_profiler
-def from_DB2SQL(query, h=None, port=50000, db=None, u=None, p=None):
+from_PostgreSQL = from_postgresql
+
+
+@profiler(type='printing')
+def from_db2(query, h=None, port=50000, db=None, u=None, p=None):
 
     print('Using IBM DB2')
 
@@ -61,8 +72,11 @@ def from_DB2SQL(query, h=None, port=50000, db=None, u=None, p=None):
     return query_result
 
 
-@time_profiler
-def from_MariaDB(query, h=None, port=3306, db=None, u=None, p=None):
+from_DB2 = from_db2
+
+
+@profiler(type='printing')
+def from_mysql(query, h=None, port=3306, db=None, u=None, p=None):
 
     print('Using MariaDB')
 
@@ -78,8 +92,11 @@ def from_MariaDB(query, h=None, port=3306, db=None, u=None, p=None):
     return query_result
 
 
-@time_profiler
-async def from_MariaDB_async(query, h=None, port=3306, db=None, u=None, p=None):
+from_mariadb = from_MariaDB = from_mysql
+
+
+@profiler(type='printing')
+async def from_mysql_async(query, h=None, port=3306, db=None, u=None, p=None):
 
     print('Using MariaDB')
 
@@ -93,3 +110,4 @@ async def from_MariaDB_async(query, h=None, port=3306, db=None, u=None, p=None):
     conn.close()
 
 
+from_mariadb_async = from_MariaDB_async = from_mysql_async

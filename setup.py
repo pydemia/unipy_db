@@ -18,7 +18,7 @@ except ImportError:
 import tarfile
 
 
-_version = '0.1.3'
+_version = '0.1.4'
 
 def package_data_listup():
 
@@ -38,15 +38,16 @@ setup(name='unipy_db',
       version=_version,
       description='Useful tools for Data Scientists',
       long_description=long_desc,
+      python_requires='>= 3.6',
       url='http://github.com/pydemia/unipy-db',
-      author='Young Ju Kim',
+      author='Youngju Jaden Kim',
       author_email='pydemia@gmail.com',
       license='MIT License',
       classifiers=[
             # How Mature: 3 - Alpha, 4 - Beta, 5 - Production/Stable
             'Development Status :: 4 - Beta',
             'Environment :: Console',
-            'Programming Language :: Python :: 3.5',
+            'Programming Language :: Python :: 3.6',
             'Operating System :: OS Independent',
             'Intended Audience :: End Users/Desktop',
             'Intended Audience :: Developers',
@@ -55,13 +56,13 @@ setup(name='unipy_db',
             ],
       packages=find_packages(exclude=['contrib', 'docs', 'tests']),
       install_requires=[
-                        'unipy',
-                        'pymysql',
+                        'unipy>=0.1.24',
+                        'pymysql>=0.9.3',
                         'psycopg2==2.7.1',
                         'sqlalchemy>=1.1.11',
                         'ibm_db_sa>=0.3.3',
-                       # 'cx_Oracle==5.3',
-                        'pandas>=0.20.2'
+                        # 'cx_Oracle==5.3',
+                        # 'pandas>=0.20.2'
                         ],
       zip_safe=False,
       #package_data={'unipy': ['*.gz', 'dataset/resources.tar.gz']}
